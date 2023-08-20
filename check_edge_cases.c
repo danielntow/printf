@@ -50,11 +50,11 @@ int handle_percent_edge_case(const char **format, va_list args)
 
 	if (*(*format + 1) == '%')
 	{
-		(*format)++; // Move past the second '%' character
+		(*format)++; /* Move past the second '%' character */
 	}
 	else if (*(*format + 1) == 'n')
 	{
-		va_arg(args, int*); // Consume argument for '%n' specifier
+		va_arg(args, int*); /* Consume argument for '%n' specifier */
 	}
 
 	return (0);
