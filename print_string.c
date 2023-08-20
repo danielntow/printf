@@ -8,6 +8,11 @@
  */
 void print_string(const char *str)
 {
+	if (str == NULL)
+	{
+		str = "(null)";
+	}
+
 	if (str)
 	{
 		while (*str)
