@@ -12,7 +12,7 @@
  */
 int handle_c_edge_case(const char **format, va_list args)
 {
-	UNUSED(format);
+	(void)format;
 	va_arg(args, int); /* Consume argument for 'c' specifier */
 	return (0);
 }
@@ -27,7 +27,7 @@ int handle_s_edge_case(const char **format, va_list args)
 {
 	char *str; /* Declare variable at the beginning */
 
-	UNUSED(format);
+	(void)format;
 
 	str = va_arg(args, char*);
 	if (str == NULL)
