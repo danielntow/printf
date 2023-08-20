@@ -13,20 +13,19 @@ void process_format(const char **format, va_list args)
 	switch (**format)
 	{
 	case 'c':
-		/* Edge case: Invalid argument type for %c specifier */
-		print_char((char)va_arg(args, int));
+		handle_c_edge_case(format, args);
 		break;
 	case 's':
-		print_string(va_arg(args, char*));
+		handle_s_edge_case(format, args);
 		break;
 	case '%':
-		print_percent();
+		handle_percent_edge_case(format, args);
 		break;
 	default:
-		/* Edge case: Unrecognized specifier */
 		print_char('%');
 		print_char(**format);
 		break;
 	}
 }
+
 
