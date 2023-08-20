@@ -8,22 +8,19 @@
  *
  * Return: The number of characters printed
  */
-int print_string(const char *str)
+void print_string(const char *str)
 {
-	int chars_printed = 0;
-
 	if (str == NULL)
 	{
+
 		str = "(null)";
 	}
-
 	if (str)
 	{
 		while (*str)
 		{
 			write(1, str, 1);
 			str++;
-			chars_printed++;
 		}
 	}
 	else
@@ -35,11 +32,8 @@ int print_string(const char *str)
 		{
 			write(1, nullString, 1);
 			nullString++;
-			chars_printed++;
 		}
 	}
-
-	return (chars_printed);
 }
 
 

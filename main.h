@@ -7,7 +7,7 @@
 void print_char(char c);
 
 /* print_string.c */
-int print_string(const char* str);
+void print_string(const char* str);
 
 /* print_percent.c */
 void print_percent(void);
