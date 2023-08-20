@@ -15,15 +15,15 @@ int print_string(const char *str)
 		str = "(null)";
 	}
 
-	int count = 0; // Initialize character count
+	int count = 0;
 
 	while (*str)
 	{
 		write(1, str, 1);
 		str++;
-		count++; // Increment character count
+		count++;
 	}
 
-	return (count); // Return total characters printed
+	return (count);
 }
 
