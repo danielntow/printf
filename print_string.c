@@ -3,11 +3,15 @@
 #include <stdarg.h>
 
 /**
- * print_string - Print a null-terminated string to standard output.
- * @str: The string to be printed.
+ * print_string - Print a string to the standard output
+ * @str: The input string
+ *
+ * Return: The number of characters printed
  */
-void print_string(const char *str)
+int print_string(const char *str)
 {
+	int count = 0; /* Initialize character count */
+
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -19,6 +23,7 @@ void print_string(const char *str)
 		{
 			write(1, str, 1);
 			str++;
+			count++; /* Increment character count */
 		}
 	}
 	else
@@ -30,6 +35,10 @@ void print_string(const char *str)
 		{
 			write(1, nullString, 1);
 			nullString++;
+			count++;
 		}
 	}
+
+	return (count);
 }
+
