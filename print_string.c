@@ -8,27 +8,22 @@
  *
  * Return: The number of characters printed
  */
-void print_string(const char *str)
+int print_string(const char *str)
 {
-	if (str)
+	if (str == NULL)
 	{
-		while (*str)
-		{
-			write(1, str, 1);
-			str++;
-		}
-	}
-	else
-	{
-		/* Edge case: Null pointer for strings (%s) */
-		const char *nullString = "(null)";
 
-		while (*nullString)
-		{
-			write(1, nullString, 1);
-			nullString++;
-		}
+		str = "(null)";
 	}
+
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+
+	return (0);
 }
+
 
 
