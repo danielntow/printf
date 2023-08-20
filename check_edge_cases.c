@@ -36,7 +36,13 @@ int check_edge_cases(const char **format, va_list args)
 	{
 		va_arg(args, int); /* Consume argument for '%' specifier */
 	}
+	else
+	{
+		/* Invalid format specifier, print a warning message */
+		_printf("Warning: Invalid format specifier '%c'\n", **format);
+	}
 
 	return (0);
 }
+
 
