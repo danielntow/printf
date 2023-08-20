@@ -40,8 +40,8 @@ int _printf(const char *format, ...)
 	va_end(args);
 	if (spec_count != arg_count)
 	{
-		fprint(stderr, "Error: Format and argument specifeir number mismatch\n");
+		fprintf(stderr, "Error: Format and argument specifeir number mismatch\n");
 		return (-1);
 	}
-	return (0);
+	return (arg_count);
 }
