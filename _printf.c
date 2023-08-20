@@ -43,5 +43,5 @@ int _printf(const char *format, ...)
 		fprint(stderr, "Error: Format and argument specifeir number mismatch\n");
 		return (-1);
 	}
-	return (arg_count);
+	return (0);
 }
