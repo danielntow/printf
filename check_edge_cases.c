@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-
+#include <stdio.h>
 /**
  * check_edge_cases - Check for edge cases in the format string.
  * @format: Pointer to the format specifier in the format string.
@@ -9,8 +9,6 @@
  */
 int check_edge_cases(const char **format, va_list args)
 {
-	(void)args;
-
 	if (**format == ' ')
 	{
 		(*format)++;
@@ -21,9 +19,24 @@ int check_edge_cases(const char **format, va_list args)
 		(*format)++;
 		return (-1);
 	}
-	else
+	else if (**format == 'c')
 	{
-		return (0);
+		va_arg(args, int); /* Consume argument for 'c' specifier */
 	}
+	else if (**format == 's')
+	{
+		char *str = va_arg(args, char *);
+
+		if (str == NULL)
+		{
+			_printf("(null)");
+		}
+	}
+	else if (**format == '%')
+	{
+		va_arg(args, int); /* Consume argument for '%' specifier */
+	}
+
+	return (0);
 }
 
