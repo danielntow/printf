@@ -17,7 +17,6 @@ void process_format(const char **format, va_list args)
 	switch (**format)
 	{
 	case 'c':
-<<<<<<< HEAD
 	{
 		c = va_arg(args, int);
 		if (c < 0 || c > 255)
@@ -26,10 +25,8 @@ void process_format(const char **format, va_list args)
 			return;
 		}
 		print_char(c);
-=======
 		/* Edge case: Invalid argument type for %c specifier */
 		print_char((char)va_arg(args, int));
->>>>>>> 6bb047614aa8ce9be31e9624033161b3ead1b72e
 		break;
 	}
 	case 's':
@@ -47,14 +44,9 @@ void process_format(const char **format, va_list args)
 		print_percent();
 		break;
 	default:
-<<<<<<< HEAD
-		fprintf(stderr, "Error: unqualified format specifier: %%%c\n", **format);
-=======
 		/* Edge case: Unrecognized specifier */
 		print_char('%');
 		print_char(**format);
->>>>>>> 6bb047614aa8ce9be31e9624033161b3ead1b72e
 		break;
 	}
 }
-
