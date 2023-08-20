@@ -10,6 +10,8 @@
  */
 int print_string(const char *str)
 {
+	int printed_chars = 0;
+
 	if (str == NULL)
 	{
 
@@ -20,10 +22,12 @@ int print_string(const char *str)
 	{
 		write(1, str, 1);
 		str++;
+		printed_chars++;
 	}
 
-	return (0);
+	return (printed_chars);
 }
+
 
 
 
