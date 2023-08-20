@@ -1,6 +1,5 @@
-#include <stdarg.h>
 #include "main.h"
-#include <stdio.h>
+#include <stdarg.h>
 
 /**
  * _printf - Print formatted output to standard output.
@@ -8,32 +7,42 @@
  * @...: Additional arguments for format placeholders.
  * Return: Number of characters printed.
  */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
-
-	va_start(args, format);
+	int printed_chars = 0;
 
 	if (format == NULL)
 	{
 		return (-1);
 	}
 
+	va_start(args, format);
+
 	while (*format)
 	{
 		if (*format == '%')
 		{
+			format++;
+
+			if (check_edge_cases(&format, args) == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+
 			process_format(&format, args);
 		}
 		else
 		{
-			print_char(*format);
+			_putchar(*format);
+			printed_chars++;
 		}
 
 		format++;
 	}
 
 	va_end(args);
-	return (0);
+	return (printed_chars);
 }
+
