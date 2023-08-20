@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
  * process_format - Process the format specifier and arguments.
@@ -22,8 +23,7 @@ void process_format(const char **format, va_list args)
 		print_percent();
 		break;
 	default:
-		print_char('%');
-		print_char(**format);
+		fprintf(stderr, "Error: unqualified format specifier: %%%c\n", **format);
 		break;
 	}
 }
