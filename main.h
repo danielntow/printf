@@ -18,5 +18,8 @@ void process_format(const char **format, va_list args);
 /* my_printf.c */
 int _printf(const char *format, ...);
 
+/* _putchar.c */
+int _putchar(char c);
+
 #endif /* MAIN_H */
 
