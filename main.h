@@ -1,26 +1,29 @@
+
 #ifndef MAIN_H
 #define MAIN_H
 
 #include <stdarg.h>
+#include <unistd.h>
 
-/* print_char.c */
-void print_char(char c);
+/**
+ * struct print_specifier - struct for print specifier
+ * @specifier: the format specifier
+ * @function: the function to handle the specifier
+ */
+typedef struct print_specifier
+{
+	char specifier;
+	int (*function)(va_list);
+} print_specifier;
 
-/* print_string.c */
-int print_string(const char* str);
-
-/* print_percent.c */
-void print_percent(void);
-
-/* process_format.c */
-void process_format(const char** format, va_list args);
-
-/* my_printf.c */
 int _printf(const char* format, ...);
-
-/* _putchar.c */
+int print_char(va_list args);
+int print_string(va_list args);
+int print_percent(va_list args);
+int (*get_print_func(const char c))(va_list);
 int _putchar(char c);
 
 #endif /* MAIN_H */
+
 
 
