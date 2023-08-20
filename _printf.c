@@ -12,6 +12,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int spec_count = 0;
+	int arg_count = 0;
 
 	va_start(args, format);
 	if (format == NULL)
@@ -23,7 +25,9 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
+			spec_count++;
 			process_format(&format, args);
+			arg_count++;
 		}
 		else
 		{
@@ -34,5 +38,10 @@ int _printf(const char *format, ...)
 	}
 
 	va_end(args);
-	return (0);
+	if (spec_count != arg_count)
+	{
+		fprint(stderr, "Error: Format and argument specifeir number mismatch\n");
+		return (-1);
+	}
+	return (arg_count);
 }
