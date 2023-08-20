@@ -1,6 +1,6 @@
 #include <stdarg.h>
 #include "main.h"
-#include <stddef.h>
+#include <stdio.h>
 
 /**
  * _printf - Print formatted output to standard output.
@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
+
 	if (format == NULL)
 	{
 		return (-1);
