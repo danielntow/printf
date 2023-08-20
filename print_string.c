@@ -20,7 +20,7 @@ int print_string(const char *str)
 
 	while (*str)
 	{
-		write(1, str, 1);
+		_putchar(*str);
 		str++;
 		printed_chars++;
 	}
