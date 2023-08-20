@@ -11,6 +11,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int chtrack = 0;
 
 	va_start(args, format);
 
@@ -18,16 +19,17 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			process_format(&format, args);
+			chtrack += process_format(&format, args);
 		}
 		else
 		{
 			print_char(*format);
+			chtrack++;
 		}
 
 		format++;
 	}
 
 	va_end(args);
-	return (0);
+	return (chtrack);
 }
