@@ -1,4 +1,3 @@
-#include <stdarg.h>
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -18,7 +17,6 @@ void process_format(const char **format, va_list args);
 
 /* my_printf.c */
 int _printf(const char *format, ...);
-int my_printf(const char *format, ...);
 
 #endif /* MAIN_H */
 
