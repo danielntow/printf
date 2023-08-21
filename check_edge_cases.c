@@ -25,7 +25,7 @@ int handle_c_edge_case(const char **format, va_list args)
  */
 int handle_s_edge_case(const char **format, va_list args)
 {
-	char *str; /* Declare variable at the beginning */
+	char *str;
 
 	(void)format;
 
@@ -50,11 +50,11 @@ int handle_percent_edge_case(const char **format, va_list args)
 
 	if (*(*format + 1) == '%')
 	{
-		(*format)++; /* Move past the second '%' character */
+		(*format)++;
 	}
 	else if (*(*format + 1) == 'n')
 	{
-		va_arg(args, int*); /* Consume argument for '%n' specifier */
+		va_arg(args, int*);
 	}
 
 	return (0);
@@ -92,7 +92,6 @@ int check_edge_cases(const char **format, va_list args)
 	}
 	else
 	{
-		/* Invalid format specifier, print a warning message */
 		_printf("Warning: Invalid format specifier '%c'\n", **format);
 	}
 
