@@ -78,7 +78,7 @@ int handle_s_edge_case(const char **format, va_list args, int width,
  */
 int handle_percent_edge_case(const char **format, va_list args)
 {
-	UNUSED(format);
+	(void)format;
 	(void)args;
 
 	return (0);

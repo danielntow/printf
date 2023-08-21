@@ -1,52 +1,45 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 
 int main(void)
 {
-	char *name = "bnketia";
-	char ch = 'a';
-	char *name_partner = "bnketia/dasare";
-	int num = 12;
+	int len = 0;
+	int len2 = 0;
+	
+	len = _printf("A %s sentence\n", "simple");
+	len2 = printf("A %s sentence\n", "simple");
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
+	
+	len = _printf("A %c%c%s sentence\n", 's', 'i', "mple");
+	len2 = printf("A %c%c%s sentence\n", 's', 'i', "mple");
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
 
-    _printf("1. Hello, %s!\n", "world");
-    printf("Hello, %s!\n", "world");
+	len = _printf("A simple %v entence\n");
+	len2 = printf("A simple %v entence\n");
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
 
-    _printf("AB. letter %c, is for %s\n", ch, name);
-    printf("AB. letter %c, is for %s\n", ch, name);
+	len = _printf("Percentage: %%\n");
+	len2 = printf("Percentage: %%\n");
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
 
-    _printf("2. Hello World\n");
-    printf("Hello world\n");
+	len = _printf("NULL: %c, %s\n", NULL, NULL);
+	len2 = printf("NULL: %c, %s\n", NULL, NULL);
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
 
-    _printf("3. Hello,\n world\t\n");
-    printf("Hello,\n world\t\n");
+	len = _printf("%");
+	len2 = printf("%");
+	printf("Len:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);
 
-    _printf("4. testprint\n");
-    printf("testprint\n");
+	len = _printf("A simple sentence%");
+	len2 = printf("\nA simple sentence%");
+	printf("\nLen:[%d]\n", len);
+	printf("Len1:[%d]\n\n", len2);	
 
-    _printf("5. hello, %s\n", name);
-    printf("hello, %s\n", name);
-
-    _printf("6. one %%\n");
-    _printf("one %%\n");
-
-    _printf("7. first letter is: %c\n", ch);
-    printf("first letter is: %c\n", ch);
-
-    _printf("8. two %%%c\n", ch);
-    printf("two %%%c\n", ch);
-
-    _printf("9. hello %shi\n", name);
-    printf("hello %shi\n", name);
-
-    _printf("10. hola %s\n", name);
-    printf("hola %s\n", name);
-
-    _printf("11. my age is: %d\n", num);
-    printf("my age is: %d\n", num);
-
-    _printf("12. which of the devs do u need: %s\n", name_partner);
-    printf("which of the devs do u need: %s\n", name_partner);
-
-    return (0);
+	return (0);
 }
-
