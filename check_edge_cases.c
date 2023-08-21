@@ -29,8 +29,7 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 		       int precision)
 {
 	char *str;
-	int len;
-	int i;
+	int len, i, spaces;
 
 	(void)format;
 
@@ -40,22 +39,32 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 		_printf("(null)");
 		return (0);
 	}
+	len = _strlen(str);
 
-	len = (precision >= 0) ? precision : _strlen(str);
-
-	/* Handle width here if needed */
+	if (precision >= 0 && precision < len)
+	{
+		len = precision;
+		/* Truncate the string if precision is specified */
+	}
 	if (width > len)
 	{
-		int spaces = width - len;
+		spaces = width - len;
 
 		for (i = 0; i < spaces; i++)
-			_putchar(' '); /* Print leading spaces */
+			_putchar(' '); // Print leading spaces
 	}
 
 	for (i = 0; i < len; i++)
 	{
-		_putchar(
-		    str[i]); /* Print characters up to the specified length */
+		if (str[i] == '%')
+		{
+			_putchar('%'); /*Escape the '%' character */
+		}
+		else
+		{
+			_putchar(str[i]);
+			/* Print characters up to thespecified length */
+		}
 	}
 
 	return (0);
