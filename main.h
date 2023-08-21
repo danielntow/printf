@@ -30,5 +30,9 @@ int handle_percent_edge_case(const char** format, va_list args);
 /* _printf.c */
 int _printf(const char* format, ...);
 
+/* utility function*/
+int _strlen(const char* str);
+
 #endif /* MAIN_H */
+
 
