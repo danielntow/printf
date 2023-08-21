@@ -1,6 +1,5 @@
-#include <stdarg.h>
 #include "main.h"
-#include <stddef.h>
+#include <stdarg.h>
 
 /**
  * _printf - Print formatted output to standard output.
@@ -8,40 +7,42 @@
  * @...: Additional arguments for format placeholders.
  * Return: Number of characters printed.
  */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int spec_count = 0;
-	int arg_count = 0;
+	int printed_chars = 0;
 
-	va_start(args, format);
 	if (format == NULL)
 	{
 		return (-1);
 	}
 
+	va_start(args, format);
+
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			spec_count++;
+			format++;
+
+			if (check_edge_cases(&format, args) == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+
 			process_format(&format, args);
-			arg_count++;
 		}
 		else
 		{
-			print_char(*format);
+			_putchar(*format);
+			printed_chars++;
 		}
 
 		format++;
 	}
 
 	va_end(args);
-	if (spec_count != arg_count)
-	{
-		fprintf(stderr, "Error: Format and argument specifeir number mismatch\n");
-		return (-1);
-	}
-	return (arg_count);
+	return (printed_chars);
 }
+
