@@ -70,21 +70,7 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 int handle_percent_edge_case(const char **format, va_list args)
 {
 	UNUSED(format);
-	va_arg(args, int); /* Consume argument for '%' specifier */
-
-	if (*(*format + 1) == '%')
-	{
-		print_percent();
-		(*format)++;
-	}
-	else if (*(*format + 1) == 'n')
-	{
-		va_arg(args, int*);
-	}
-	else
-	{
-		print_percent();
-	}
+	(void)args;
 
 	return (0);
 }
