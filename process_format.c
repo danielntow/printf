@@ -15,13 +15,10 @@ void process_format(const char **format, va_list args)
 	(*format)++;
 	if (**format == '%')
 	{
-		if (*(*format + 1) == '%')
-		{
-			(*format)++;
-			print_char('%');
-		}
-		else
-			print_percent();
+	(*format)++;
+
+		if (**format != '%')
+			handle_c_edge_case(format, args);
 	}
 	else if (**format == 'c')
 	{

@@ -24,6 +24,8 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == '%')
+				print_percent();
 
 			if (check_edge_cases(&format, args) == -1)
 			{
