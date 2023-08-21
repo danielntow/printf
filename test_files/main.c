@@ -11,6 +11,9 @@ int main(void)
     _printf("1. Hello, %s!\n", "world");
     printf("Hello, %s!\n", "world");
 
+    _printf("AB. letter %c, is for %s\n", ch, name);
+    printf("AB. letter %c, is for %s\n", ch, name);
+
     _printf("2. Hello World\n");
     printf("Hello world\n");
 
@@ -23,8 +26,8 @@ int main(void)
     _printf("5. hello, %s\n", name);
     printf("hello, %s\n", name);
 
-    _printf("6. one %%");
-    _printf("one %%");
+    _printf("6. one %%\n");
+    _printf("one %%\n");
 
     _printf("7. first letter is: %c\n", ch);
     printf("first letter is: %c\n", ch);
