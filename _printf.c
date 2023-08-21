@@ -27,11 +27,12 @@ int _printf(const char *format, ...)
 			if (*format == '%')
 				print_percent();
 
-			if (check_edge_cases(&format, args) == -1)
+			else if (check_edge_cases(&format, args) == -1)
 			{
 				va_end(args);
 				return (-1);
 			}
+			else
 
 			process_format(&format, args);
 		}
@@ -47,4 +48,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (printed_chars);
 }
-

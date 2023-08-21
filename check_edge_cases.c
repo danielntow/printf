@@ -12,8 +12,11 @@
  */
 int handle_c_edge_case(const char **format, va_list args)
 {
-	(void)format;
-	va_arg(args, int); /* Consume argument for 'c' specifier */
+	char c;
+
+	c = (char)va_arg(args, int); /* Consume argument for 'c' specifier */
+	_putchar(c);
+	(*format)++;
 	return (0);
 }
 
