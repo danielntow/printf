@@ -38,27 +38,26 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 	if (str == NULL)
 	{
 		_printf("(null)");
+		return (0);
 	}
-	else
+
+	len = (precision >= 0) ? precision : _strlen(str);
+
+	/* Handle width here if needed */
+	if (width > len)
 	{
-		len = _strlen(str);
+		int spaces = width - len;
 
-		/* Handle width and precision here if needed */
-		if (width > len)
-		{
-			int spaces = width - len;
-
-			for (i = 0; i < spaces; i++)
-				_putchar(' '); /* Print leading spaces */
-		}
-
-		if (precision >= 0 && precision < len)
-			len = precision; /* Truncate the length for precision */
-		for (i = 0; i < len; i++)
-		{
-			_putchar(str[i]); /* Print characters up to the the specified length */
-							}
+		for (i = 0; i < spaces; i++)
+			_putchar(' '); /* Print leading spaces */
 	}
+
+	for (i = 0; i < len; i++)
+	{
+		_putchar(
+		    str[i]); /* Print characters up to the specified length */
+	}
+
 	return (0);
 }
 
