@@ -8,7 +8,7 @@
  * handle_c_edge_case - Handle edge cases for 'c' specifier.
  * @format: Pointer to the format specifier in the format string.
  * @args: The variable arguments list.
- * Return: (0).
+ * Return: Always returns 0.
  */
 int handle_c_edge_case(const char **format, va_list args)
 {
@@ -21,18 +21,28 @@ int handle_c_edge_case(const char **format, va_list args)
  * handle_s_edge_case - Handle edge cases for 's' specifier.
  * @format: Pointer to the format specifier in the format string.
  * @args: The variable arguments list.
- * Return: (0).
+ * @width: Minimum width specifier.
+ * @precision: Precision specifier.
+ * Return: Always returns 0.
  */
-int handle_s_edge_case(const char **format, va_list args)
+int handle_s_edge_case(const char **format, va_list args, int width,
+		       int precision)
 {
 	char *str;
 
 	(void)format;
+	(void)width;
+	(void)precision;
 
 	str = va_arg(args, char*);
 	if (str == NULL)
 	{
 		_printf("(null)");
+	}
+	else
+	{
+		// Handle width and precision here if needed
+		_printf("%s", str);
 	}
 	return (0);
 }
@@ -41,7 +51,7 @@ int handle_s_edge_case(const char **format, va_list args)
  * handle_percent_edge_case - Handle edge cases for '%' specifier.
  * @format: Pointer to the format specifier in the format string.
  * @args: The variable arguments list.
- * Return: (0).
+ * Return: Always returns 0.
  */
 int handle_percent_edge_case(const char **format, va_list args)
 {
@@ -64,7 +74,7 @@ int handle_percent_edge_case(const char **format, va_list args)
  * check_edge_cases - Check for edge cases in the format string.
  * @format: Pointer to the format specifier in the format string.
  * @args: The variable arguments list.
- * Return: (-1) if an edge case is encountered, (0) otherwise.
+ * Return: -1 if an edge case is encountered, 0 otherwise.
  */
 int check_edge_cases(const char **format, va_list args)
 {
@@ -84,7 +94,7 @@ int check_edge_cases(const char **format, va_list args)
 	}
 	else if (**format == 's')
 	{
-		return (handle_s_edge_case(format, args));
+		return (handle_s_edge_case(format, args, 0, -1));
 	}
 	else if (**format == '%')
 	{
