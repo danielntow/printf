@@ -31,8 +31,6 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 	char *str;
 
 	(void)format;
-	(void)width;
-	(void)precision;
 
 	str = va_arg(args, char*);
 	if (str == NULL)
@@ -42,7 +40,20 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 	else
 	{
 		/* Handle width and precision here if needed */
-		_printf("%s", str);
+		int len = _strlen(str);
+		int i;
+
+		if (width > len)
+		{
+			int spaces = width - len;
+
+			for (i = 0; i < spaces; i++)
+				_putchar(' '); /* Print leading spaces */
+		}
+		if (precision >= 0)
+			_printf("%.*s", precision, str); /* Print with precision */
+		else
+			_printf("%s", str); /* Just print the string */
 	}
 	return (0);
 }
