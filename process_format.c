@@ -1,5 +1,8 @@
 #include "main.h"
+#include <ctype.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * process_format - Process the format specifier and arguments.
@@ -8,24 +11,45 @@
  */
 void process_format(const char **format, va_list args)
 {
-	(*format)++; /* Move past '%' */
-
-	switch (**format)
+	int width, precision;
+	(*format)++;
+	if (**format == '%')
 	{
-	case 'c':
-		handle_c_edge_case(format, args);
-		break;
-	case 's':
-		handle_s_edge_case(format, args);
-		break;
-	case '%':
-		handle_percent_edge_case(format, args);
-		break;
-	default:
-		print_char('%');
-		print_char(**format);
-		break;
+		if (*(*format + 1) == '%')
+		{
+			(*format)++;
+			print_char('%');
+		}
+		else
+			print_percent();
 	}
+	else if (**format == 'c')
+	{
+		handle_c_edge_case(format, args);
+	}
+	else if (**format == 's')
+	{
+		(*format)++;
+		width = 0;
+		precision = -1;
+		while (isdigit(**format))
+		{
+			width = width * 10 + (**format - '0');
+			(*format)++;
+		}
+		if (**format == '.')
+		{
+			(*format)++;
+			precision = 0;
+			while (isdigit(**format))
+			{
+				precision = precision * 10 + (**format - '0');
+				(*format)++;
+			}
+		}
+		handle_s_edge_case(format, args, width, precision);
+	}
+	else
+		print_char(**format);
 }
-
 
