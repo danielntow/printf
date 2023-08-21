@@ -11,7 +11,15 @@ void process_format(const char **format, va_list args)
 	(*format)++;
 	if (**format == '%')
 	{
-		print_percent(); /* Call the function to print '%' */
+		if (*(*format + 1) == '%') /* Check for '%%' escape sequence */
+		{
+			(*format)++; /* Move past the second '%' character */
+			print_char('%');
+		}
+		else
+		{
+			print_percent(); /* Call the function to print '%' */
+		}
 	}
 	else if (**format == 'c')
 	{
