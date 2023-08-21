@@ -8,24 +8,26 @@
  */
 void process_format(const char **format, va_list args)
 {
-	(*format)++; /* Move past '%' */
-
-	switch (**format)
+	(*format)++;
+	if (**format == '%')
 	{
-	case 'c':
+		print_percent(); /* Call the function to print '%' */
+	}
+	else if (**format == 'c')
+	{
 		handle_c_edge_case(format, args);
-		break;
-	case 's':
+	}
+	else if (**format == 's')
+	{
 		handle_s_edge_case(format, args);
-		break;
-	case '%':
-		handle_percent_edge_case(format, args);
-		break;
-	default:
-		print_char('%');
+	}
+	else
+	{
+		print_char('%'); /* Print the '%' character */
+				 /* Print the invalid specifier character */
 		print_char(**format);
-		break;
 	}
 }
+
 
 
