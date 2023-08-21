@@ -51,7 +51,7 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 		spaces = width - len;
 
 		for (i = 0; i < spaces; i++)
-			_putchar(' '); // Print leading spaces
+			_putchar(' '); /* Print leading spaces */
 	}
 
 	for (i = 0; i < len; i++)
