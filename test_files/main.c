@@ -35,8 +35,8 @@ int main(void)
     _printf("9. hello %shi\n", name);
     printf("hello %shi\n", name);
 
-    _printf("10. hola %s\t", name);
-    printf("hola %s\t", name);
+    _printf("10. hola %s\n", name);
+    printf("hola %s\n", name);
 
     _printf("11. my age is: %d\n", num);
     printf("my age is: %d\n", num);
