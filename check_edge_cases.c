@@ -41,7 +41,7 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 	}
 	else
 	{
-		// Handle width and precision here if needed
+		/* Handle width and precision here if needed */
 		_printf("%s", str);
 	}
 	return (0);
