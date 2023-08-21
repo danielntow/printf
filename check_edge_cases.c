@@ -74,15 +74,21 @@ int handle_percent_edge_case(const char **format, va_list args)
 
 	if (*(*format + 1) == '%')
 	{
+		print_percent();
 		(*format)++;
 	}
 	else if (*(*format + 1) == 'n')
 	{
 		va_arg(args, int*);
 	}
+	else
+	{
+		print_percent();
+	}
 
 	return (0);
 }
+
 
 /**
  * check_edge_cases - Check for edge cases in the format string.
