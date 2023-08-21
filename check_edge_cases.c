@@ -34,6 +34,9 @@ int handle_s_edge_case(const char **format, va_list args)
 	{
 		_printf("(null)");
 	}
+	else
+	{
+		print_string(str);
 	return (0);
 }
 
