@@ -31,9 +31,11 @@ void process_format(const char **format, va_list args)
 	}
 	else
 	{
-		print_char('%'); /* Print the '%' character */
-				 /* Print the invalid specifier character */
-		print_char(**format);
+		if (**format != '\0') /* Check for end of format string */
+		{
+			print_char('%');      /* Print the '%' character */
+			print_char(**format); /* Print the invalid specifier character */
+		}
 	}
 }
 
