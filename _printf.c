@@ -10,39 +10,34 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int printed_chars = 0;
 
-	if (format == NULL)
-		return (-1);
+	ssize_t bytes_written;
+
+	int length;
+	char buffer[1024]; /* Buffer to hold formatted output */
+
+	// buffer[0] = '\0';
 
 	va_start(args, format);
 
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++; /* Move past the '%' character */
-
-			if (*format == '%')
-				printed_chars += _putchar('%');
-			else if (*format == 'c')
-				printed_chars +=
-				    handle_c_edge_case(&format, args);
-			else if (*format == 's')
-				printed_chars +=
-				    handle_s_edge_case(&format, args);
-			else
-			{
-				printed_chars += _putchar('%');
-				printed_chars += _putchar(*format);
-			}
-		}
-		else
-			printed_chars += _putchar(*format);
-
-		format++;
-	}
+	length = vsnprintf(buffer, sizeof(buffer), format, args);
 
 	va_end(args);
-	return (printed_chars);
+
+	if (length < 0)
+	{
+		perror("Error formatting output");
+		return (-1);
+	}
+
+	bytes_written = write(STDOUT_FILENO, buffer, length);
+
+	if (bytes_written == -1)
+	{
+		perror("Error writing to standard output");
+		return (-1);
+	}
+
+	return (bytes_written);
 }
+
