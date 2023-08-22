@@ -16,7 +16,6 @@ int _printf(const char *format, ...)
 	int length;
 	char buffer[1024]; /* Buffer to hold formatted output */
 
-	// buffer[0] = '\0';
 
 	va_start(args, format);
 
