@@ -11,17 +11,12 @@
  */
 void process_format(const char **format, va_list args)
 {
-	int width, precision;
 	(*format)++;
 	if (**format == '%')
 	{
-		(*format)++;
-		if (**format == '%')
-		{
-			_putchar('%');
-		}
-		else
-			handle_c_edge_case(format, args);
+		_putchar('%'); /* Print a single '%' character */
+		(*format)++;   /* Move past the second '%' character */
+		return;	       /* Return without further processing */
 	}
 	else if (**format == 'c')
 	{
@@ -29,26 +24,12 @@ void process_format(const char **format, va_list args)
 	}
 	else if (**format == 's')
 	{
-		(*format)++;
-		width = 0;
-		precision = -1;
-		while (isdigit(**format))
-		{
-			width = width * 10 + (**format - '0');
-			(*format)++;
-		}
-		if (**format == '.')
-		{
-			(*format)++;
-			precision = 0;
-			while (isdigit(**format))
-			{
-				precision = precision * 10 + (**format - '0');
-				(*format)++;
-			}
-		}
-		handle_s_edge_case(format, args, width, precision);
+		handle_s_edge_case(format, args);
 	}
 	else
-		print_char(**format);
+	{
+		_putchar('%');
+		_putchar(**format);
+	}
 }
+

@@ -13,9 +13,7 @@ int _printf(const char *format, ...)
 	int printed_chars = 0;
 
 	if (format == NULL)
-	{
 		return (-1);
-	}
 
 	va_start(args, format);
 
@@ -23,24 +21,24 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			format++;
+			format++; /* Move past the '%' character */
+
 			if (*format == '%')
-				print_percent();
-
-			else if (check_edge_cases(&format, args) == -1)
-			{
-				va_end(args);
-				return (-1);
-			}
+				printed_chars += _putchar('%');
+			else if (*format == 'c')
+				printed_chars +=
+				    handle_c_edge_case(&format, args);
+			else if (*format == 's')
+				printed_chars +=
+				    handle_s_edge_case(&format, args);
 			else
-
-			process_format(&format, args);
+			{
+				printed_chars += _putchar('%');
+				printed_chars += _putchar(*format);
+			}
 		}
 		else
-		{
-			_putchar(*format);
-			printed_chars++;
-		}
+			printed_chars += _putchar(*format);
 
 		format++;
 	}

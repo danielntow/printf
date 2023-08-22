@@ -4,9 +4,14 @@
 /**
  * print_char - Print a single character to standard output.
  * @c: The character to be printed.
+ *
+ * Return: length of func
  */
-void print_char(char c)
+int print_char(char c)
 {
-	 write(1, &c, 1);
+
+	write(1, &c, 1);
+
+	return (1);
 }
 

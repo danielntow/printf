@@ -12,10 +12,10 @@ int _putchar(char c);
 int print_string(const char* str);
 
 /* print_char.c */
-void print_char(char c);
+int print_char(char c);
 
 /* print_percent.c */
-void print_percent(void);
+int print_percent(void);
 
 /* process_format.c */
 void process_format(const char** format, va_list args);
@@ -23,8 +23,7 @@ void process_format(const char** format, va_list args);
 /* check_edge_cases.c */
 int check_edge_cases(const char** format, va_list args);
 int handle_c_edge_case(const char** format, va_list args);
-int handle_s_edge_case(const char** format, va_list args, int width,
-		       int precision);
+int handle_s_edge_case(const char** format, va_list args);
 int handle_percent_edge_case(const char** format, va_list args);
 
 /* _printf.c */
@@ -34,5 +33,6 @@ int _printf(const char* format, ...);
 int _strlen(const char* str);
 
 #endif /* MAIN_H */
+
 
 

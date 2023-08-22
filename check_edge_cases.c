@@ -14,9 +14,12 @@ int handle_c_edge_case(const char **format, va_list args)
 {
 	char c;
 
+	(void)format;
+	/* (void)args; */
+
 	c = (char)va_arg(args, int); /* Consume argument for 'c' specifier */
 	_putchar(c);
-	(*format)++;
+	/* (*format)++; */
 	return (0);
 }
 
@@ -24,15 +27,14 @@ int handle_c_edge_case(const char **format, va_list args)
  * handle_s_edge_case - Handle edge cases for 's' specifier.
  * @format: Pointer to the format specifier in the format string.
  * @args: The variable arguments list.
- * @width: Minimum width specifier.
- * @precision: Precision specifier.
+ *
+ *
  * Return: Always returns 0.
  */
-int handle_s_edge_case(const char **format, va_list args, int width,
-		       int precision)
+int handle_s_edge_case(const char **format, va_list args)
 {
 	char *str;
-	int len, i, spaces;
+	int len, i;
 
 	(void)format;
 
@@ -44,32 +46,23 @@ int handle_s_edge_case(const char **format, va_list args, int width,
 	}
 	len = _strlen(str);
 
-	if (precision >= 0 && precision < len)
-	{
-		len = precision;
-		/* Truncate the string if precision is specified */
-	}
-	if (width > len)
-	{
-		spaces = width - len;
-
-		for (i = 0; i < spaces; i++)
-			_putchar(' '); /* Print leading spaces */
-	}
-
 	for (i = 0; i < len; i++)
 	{
 		if (str[i] == '%')
 		{
-			_putchar('%'); /*Escape the '%' character */
+			if (i + 1 < len && str[i + 1] != '%')
+			{
+				_putchar('%'); /* Print '%' character as is */
+			}
+			/* Skip the current '%' character since it's followed by * % */
+			i++;
 		}
 		else
 		{
 			_putchar(str[i]);
-			/* Print characters up to thespecified length */
+			/* Print characters up to the specified length */
 		}
 	}
-
 	return (0);
 }
 
@@ -81,12 +74,12 @@ int handle_s_edge_case(const char **format, va_list args, int width,
  */
 int handle_percent_edge_case(const char **format, va_list args)
 {
-	(void)format;
-	(void)args;
 
+	(void)args;
+	_putchar(**format); /* Print the '%' character itself */
+	(*format)++; /* Move past the '%' character in the format string */
 	return (0);
 }
-
 
 /**
  * check_edge_cases - Check for edge cases in the format string.
@@ -112,7 +105,7 @@ int check_edge_cases(const char **format, va_list args)
 	}
 	else if (**format == 's')
 	{
-		return (handle_s_edge_case(format, args, 0, -1));
+		return (handle_s_edge_case(format, args));
 	}
 	else if (**format == '%')
 	{
